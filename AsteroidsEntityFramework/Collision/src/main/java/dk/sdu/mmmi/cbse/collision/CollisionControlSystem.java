@@ -15,6 +15,13 @@ import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
  */
 public class CollisionControlSystem implements IPostEntityProcessingService {
 
+    /**
+     * Method here should calculate collision for all entites in the world currently.
+     * It should read the data and find any collisions, then create new data and add it to the world.
+     * i.e. if an asteroid is hit by a projectile, the asteroid should split in two smaller ones.
+     * @param gameData
+     * @param world 
+     */
     @Override
     public void process(GameData gameData, World world) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

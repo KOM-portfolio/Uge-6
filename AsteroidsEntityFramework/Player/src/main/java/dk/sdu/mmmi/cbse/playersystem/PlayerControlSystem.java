@@ -10,7 +10,7 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-import dk.sdu.mmmi.cbse.projectile.Projectile; 
+import dk.sdu.mmmi.cbse.projectile.PlayerProjectile;
 
 /**
  *
@@ -49,7 +49,7 @@ public class PlayerControlSystem implements IEntityProcessingService {
         float y = playerPos.getY();
         float radians = playerPos.getRadians();
 
-        Entity projectile = new Projectile();
+        Entity projectile = new PlayerProjectile();
         projectile.add(new MovingPart(deacceleration, acceleration, maxSpeed, rotationSpeed));
         projectile.add(new PositionPart(x, y, radians));
 

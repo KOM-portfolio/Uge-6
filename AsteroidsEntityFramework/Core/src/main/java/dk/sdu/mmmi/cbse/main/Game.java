@@ -21,6 +21,8 @@ import dk.sdu.mmmi.cbse.managers.GameInputProcessor;
 import dk.sdu.mmmi.cbse.playersystem.Player;
 import dk.sdu.mmmi.cbse.playersystem.PlayerPlugin;
 import dk.sdu.mmmi.cbse.playersystem.PlayerControlSystem;
+import dk.sdu.mmmi.cbse.projectile.EnemyProjectile;
+import dk.sdu.mmmi.cbse.projectile.PlayerProjectile;
 import dk.sdu.mmmi.cbse.projectile.Projectile;
 import dk.sdu.mmmi.cbse.projectile.ProjectileControlSystem;
 import dk.sdu.mmmi.cbse.projectile.ProjectilePlugin;
@@ -120,8 +122,10 @@ public class Game implements ApplicationListener {
                 sr.setColor(1, 1, 1, 1);
             } else if(entity instanceof Asteroid){
                 sr.setColor(0, 255, 0, 1);
-            } else if(entity instanceof Projectile){
+            } else if(entity instanceof PlayerProjectile){
                 sr.setColor(1, 1, 1, 1);
+            } else if(entity instanceof EnemyProjectile){
+                sr.setColor(255, 0, 0, 1);
             }
 
             sr.begin(ShapeRenderer.ShapeType.Line);

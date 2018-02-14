@@ -11,6 +11,7 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import dk.sdu.mmmi.cbse.projectile.EnemyProjectile;
 
 /**
  *
@@ -24,15 +25,36 @@ public class EnemyControlSystem implements IEntityProcessingService {
             PositionPart positionPart = enemy.getPart(PositionPart.class);
             MovingPart movingPart = enemy.getPart(MovingPart.class);
 
-            movingPart.setLeft((int)(Math.random()*2) == 0);
-            movingPart.setRight((int)(Math.random()*2) == 0);
-            movingPart.setUp((int)(Math.random()*2) == 0);
+            movingPart.setLeft((int) (Math.random() * 2) == 0);
+            movingPart.setRight((int) (Math.random() * 2) == 0);
+            movingPart.setUp((int) (Math.random() * 2) == 0);
 
+            if((int)(Math.random() * 40) == 0){
+                System.out.println("Enemy is shooting!");
+                world.addEntity(shootProjectile(positionPart));
+            }
+            
             movingPart.process(gameData, enemy);
             positionPart.process(gameData, enemy);
 
             updateShape(enemy);
         }
+    }
+
+    private Entity shootProjectile(PositionPart enemyPos) {
+        float deacceleration = 0;
+        float acceleration = 200;
+        float maxSpeed = 200;
+        float rotationSpeed = 0;
+        float x = enemyPos.getX();
+        float y = enemyPos.getY();
+        float radians = enemyPos.getRadians();
+
+        Entity projectile = new EnemyProjectile();
+        projectile.add(new MovingPart(deacceleration, acceleration, maxSpeed, rotationSpeed));
+        projectile.add(new PositionPart(x, y, radians));
+
+        return projectile;
     }
 
     private void updateShape(Entity entity) {

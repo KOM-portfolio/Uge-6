@@ -22,7 +22,11 @@ public class ProjectileControlSystem implements IEntityProcessingService {
     @Override
     public void process(GameData gameData, World world) {
         ArrayList<Entity> expiredProjectiles = new ArrayList<>();
-        for (Entity projectile : world.getEntities(Projectile.class)) {
+        ArrayList<Entity> projectilesInWorld = new ArrayList<>();
+        projectilesInWorld.addAll(world.getEntities(EnemyProjectile.class));
+        projectilesInWorld.addAll(world.getEntities(PlayerProjectile.class));
+        
+        for (Entity projectile : projectilesInWorld) {
             PositionPart positionPart = projectile.getPart(PositionPart.class);
             MovingPart movingPart = projectile.getPart(MovingPart.class);
 

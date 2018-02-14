@@ -9,6 +9,8 @@ import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,7 +26,11 @@ public class ProjectilePlugin implements IGamePluginService {
 
     @Override
     public void stop(GameData gameData, World world) {
-        for(Entity e : world.getEntities(Projectile.class)){
+        List<Entity> projectilesInWorld = new ArrayList<>();
+        projectilesInWorld.addAll(world.getEntities(EnemyProjectile.class));
+        projectilesInWorld.addAll(world.getEntities(PlayerProjectile.class));
+        
+        for(Entity e : projectilesInWorld){
             world.removeEntity(e);
         }
     }

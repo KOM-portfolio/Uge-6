@@ -21,6 +21,9 @@ import dk.sdu.mmmi.cbse.managers.GameInputProcessor;
 import dk.sdu.mmmi.cbse.playersystem.Player;
 import dk.sdu.mmmi.cbse.playersystem.PlayerPlugin;
 import dk.sdu.mmmi.cbse.playersystem.PlayerControlSystem;
+import dk.sdu.mmmi.cbse.projectile.Projectile;
+import dk.sdu.mmmi.cbse.projectile.ProjectileControlSystem;
+import dk.sdu.mmmi.cbse.projectile.ProjectilePlugin;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +71,12 @@ public class Game implements ApplicationListener {
         IEntityProcessingService asteroidProcess = new AsteroidControlSystem();
         entityPlugins.add(asteroidPlugin);
         entityProcessors.add(asteroidProcess);
+        
+        //Projectile plugin & processor
+        IGamePluginService projectilePlugin = new ProjectilePlugin();
+        IEntityProcessingService projectileProcess = new ProjectileControlSystem();
+        entityPlugins.add(projectilePlugin);
+        entityProcessors.add(projectileProcess);
 
         // Lookup all Game Plugins using ServiceLoader
         for (IGamePluginService iGamePlugin : entityPlugins) {
@@ -111,6 +120,8 @@ public class Game implements ApplicationListener {
                 sr.setColor(1, 1, 1, 1);
             } else if(entity instanceof Asteroid){
                 sr.setColor(0, 255, 0, 1);
+            } else if(entity instanceof Projectile){
+                sr.setColor(1, 1, 1, 1);
             }
 
             sr.begin(ShapeRenderer.ShapeType.Line);

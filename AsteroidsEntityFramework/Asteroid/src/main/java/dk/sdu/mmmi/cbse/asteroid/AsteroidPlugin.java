@@ -8,6 +8,7 @@ package dk.sdu.mmmi.cbse.asteroid;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
+import dk.sdu.mmmi.cbse.common.data.entityparts.LifePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
@@ -41,10 +42,13 @@ public class AsteroidPlugin implements IGamePluginService {
         float x = gameData.getDisplayWidth() / (int)((Math.random() * 10) + 1);
         float y = gameData.getDisplayHeight() / (int)((Math.random() * 10) + 1);
         float radians = 3.1415f / (float)((Math.random() * 2) + 1);
+        float radius = 2;
 
         Entity asteroid = new Asteroid();
+        asteroid.setRadius(radius);
         asteroid.add(new MovingPart(deacceleration, acceleration, maxSpeed, rotationSpeed));
         asteroid.add(new PositionPart(x, y, radians));
+        asteroid.add(new LifePart(1,0));
 
         return asteroid;
 

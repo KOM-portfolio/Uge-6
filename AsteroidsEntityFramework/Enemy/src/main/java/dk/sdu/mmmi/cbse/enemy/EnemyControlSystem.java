@@ -30,7 +30,7 @@ public class EnemyControlSystem implements IEntityProcessingService {
             movingPart.setUp((int) (Math.random() * 2) == 0);
 
             if((int)(Math.random() * 40) == 0){
-                System.out.println("Enemy is shooting!");
+                //System.out.println("Enemy is shooting!");
                 world.addEntity(shootProjectile(positionPart));
             }
             

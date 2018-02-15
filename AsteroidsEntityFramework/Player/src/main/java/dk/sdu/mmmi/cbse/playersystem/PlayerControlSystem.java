@@ -29,7 +29,6 @@ public class PlayerControlSystem implements IEntityProcessingService {
             movingPart.setUp(gameData.getKeys().isDown(UP));
             
             if(gameData.getKeys().isPressed(SPACE)){
-                System.out.println("Player is shooting!");
                 world.addEntity(shootProjectile(positionPart));
             }
             
@@ -75,7 +74,7 @@ public class PlayerControlSystem implements IEntityProcessingService {
 
         shapex[3] = (float) (x + Math.cos(radians + 4 * 3.1415f / 5) * 8);
         shapey[3] = (float) (y + Math.sin(radians + 4 * 3.1415f / 5) * 8);
-
+        
         entity.setShapeX(shapex);
         entity.setShapeY(shapey);
     }

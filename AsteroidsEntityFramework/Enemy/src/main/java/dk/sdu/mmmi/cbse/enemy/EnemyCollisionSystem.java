@@ -22,7 +22,7 @@ public class EnemyCollisionSystem implements IPostEntityProcessingService {
      */
     @Override
     public void process(GameData gameData, World world) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }

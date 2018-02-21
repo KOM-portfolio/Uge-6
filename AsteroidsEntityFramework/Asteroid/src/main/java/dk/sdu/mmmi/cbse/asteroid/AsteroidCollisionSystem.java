@@ -73,13 +73,16 @@ public class AsteroidCollisionSystem implements IPostEntityProcessingService {
             // Get Player Position Part
             PositionPart plaPos = pla.getPart(PositionPart.class);
             // Use the distance formula to determine the distance between the player and the asteroid
-            // There is a few errors with this way of handling collision, the result from the distanceFormula can be 0, which means there must be a faulty collision detected somewhere.
-            double distanceFormula = Math.pow((int) asPos.getX() - (int) plaPos.getX(), 2) + Math.pow((int) asPos.getY() - (int) plaPos.getY(), 2);
-            if ((int) distanceFormula == 0 || ((int) plaPos.getX() == (int) asPos.getY() && (int) plaPos.getY() == (int) asPos.getY())) {
+            // There is a few errors with this way of handling collision, the result from the pythagoras can be 0, which means there must be a faulty collision detected somewhere.
+            // We can work around this by casting to (int), which seems to produce a more reliable collision calculation
+            double pythagoras = Math.pow((int) asPos.getX() - (int) plaPos.getX(), 2) + Math.pow((int) asPos.getY() - (int) plaPos.getY(), 2);
+            // Check for faulty collisions
+            if ((int) pythagoras == 0 || ((int) plaPos.getX() == (int) asPos.getY() && (int) plaPos.getY() == (int) asPos.getY())) {
                 System.out.println("Faulty collision detected.");
                 return;
             }
-            if (Math.sqrt((int) distanceFormula) < pla.getRadius() + as.getRadius()) {
+            // We then make use of the distance formula
+            if (Math.sqrt((int) pythagoras) < pla.getRadius() + as.getRadius()) {
                 System.out.println("Collision Detected with asteroid and player");
                 world.removeEntity(as);
                 LifePart plaLp = pla.getPart(LifePart.class);

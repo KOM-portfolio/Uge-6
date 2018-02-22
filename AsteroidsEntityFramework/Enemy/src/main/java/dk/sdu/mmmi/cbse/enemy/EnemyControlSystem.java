@@ -49,8 +49,10 @@ public class EnemyControlSystem implements IEntityProcessingService {
         float x = enemyPos.getX();
         float y = enemyPos.getY();
         float radians = enemyPos.getRadians();
+        float radius = 2;
 
         Entity projectile = new EnemyProjectile();
+        projectile.setRadius(radius);
         projectile.add(new MovingPart(deacceleration, acceleration, maxSpeed, rotationSpeed));
         projectile.add(new PositionPart(x, y, radians));
 

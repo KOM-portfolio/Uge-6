@@ -6,9 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.mmmi.cbse.asteroid.Asteroid;
-import dk.sdu.mmmi.cbse.asteroid.AsteroidCollisionSystem;
-import dk.sdu.mmmi.cbse.asteroid.AsteroidControlSystem;
-import dk.sdu.mmmi.cbse.asteroid.AsteroidPlugin;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
@@ -75,12 +72,12 @@ public class Game implements ApplicationListener {
         postEntityProcessors.add(enemyCollision);
         
         // Asteroid plugin & processor
-        IGamePluginService asteroidPlugin = new AsteroidPlugin();
-        IEntityProcessingService asteroidProcess = new AsteroidControlSystem();
-        IPostEntityProcessingService asteroidCollision = new AsteroidCollisionSystem();
-        entityPlugins.add(asteroidPlugin);
-        entityProcessors.add(asteroidProcess);
-        postEntityProcessors.add(asteroidCollision);
+//        IGamePluginService asteroidPlugin = new AsteroidPlugin();
+//        IEntityProcessingService asteroidProcess = new AsteroidControlSystem();
+//        IPostEntityProcessingService asteroidCollision = new AsteroidCollisionSystem();
+//        entityPlugins.add(asteroidPlugin);
+//        entityProcessors.add(asteroidProcess);
+//        postEntityProcessors.add(asteroidCollision);
         
         //Projectile plugin & processor
         IGamePluginService projectilePlugin = new ProjectilePlugin();

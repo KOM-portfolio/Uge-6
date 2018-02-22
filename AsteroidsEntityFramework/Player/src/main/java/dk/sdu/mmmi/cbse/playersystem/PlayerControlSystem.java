@@ -47,8 +47,10 @@ public class PlayerControlSystem implements IEntityProcessingService {
         float x = playerPos.getX();
         float y = playerPos.getY();
         float radians = playerPos.getRadians();
+        float radius = 2;
 
         Entity projectile = new PlayerProjectile();
+        projectile.setRadius(radius);
         projectile.add(new MovingPart(deacceleration, acceleration, maxSpeed, rotationSpeed));
         projectile.add(new PositionPart(x, y, radians));
 

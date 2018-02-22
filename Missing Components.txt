@@ -1,0 +1,1 @@
+A missing component could be a "carepackage" which could randomly spawn inside the game area, which upon collision with either the player or the enemy would restore a certain amount of health.

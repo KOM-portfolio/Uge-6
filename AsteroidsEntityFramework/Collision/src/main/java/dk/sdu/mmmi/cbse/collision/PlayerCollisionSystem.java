@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.mmmi.cbse.playersystem;
+package dk.sdu.mmmi.cbse.collision;
 
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
@@ -11,8 +11,8 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.LifePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
+import dk.sdu.mmmi.cbse.playersystem.Player;
 import dk.sdu.mmmi.cbse.projectile.EnemyProjectile;
-import dk.sdu.mmmi.cbse.projectile.PlayerProjectile;
 import dk.sdu.mmmi.cbse.projectile.Projectile;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +30,11 @@ public class PlayerCollisionSystem implements IPostEntityProcessingService {
      */
     @Override
     public void process(GameData gameData, World world) {
-        List<Entity> enemies = new ArrayList<>(world.getEntities(Player.class));
+        List<Entity> players = new ArrayList<>(world.getEntities(Player.class));
         List<Entity> foreignObjects = new ArrayList<>();
         foreignObjects.addAll(world.getEntities(EnemyProjectile.class));
 
-        for (Entity e : enemies) {
+        for (Entity e : players) {
             Player pla = (Player) e;
             // Check collision for each foreign Object we want something to happen with on collision
             for (Entity obj : foreignObjects) {

@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.mmmi.cbse.asteroid.Asteroid;
+import dk.sdu.mmmi.cbse.asteroid.AsteroidControlSystem;
+import dk.sdu.mmmi.cbse.asteroid.AsteroidPlugin;
+import dk.sdu.mmmi.cbse.collision.AsteroidCollisionSystem;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
@@ -13,12 +16,12 @@ import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.enemy.Enemy;
-import dk.sdu.mmmi.cbse.enemy.EnemyCollisionSystem;
+import dk.sdu.mmmi.cbse.collision.EnemyCollisionSystem;
 import dk.sdu.mmmi.cbse.enemy.EnemyControlSystem;
 import dk.sdu.mmmi.cbse.enemy.EnemyPlugin;
 import dk.sdu.mmmi.cbse.managers.GameInputProcessor;
 import dk.sdu.mmmi.cbse.playersystem.Player;
-import dk.sdu.mmmi.cbse.playersystem.PlayerCollisionSystem;
+import dk.sdu.mmmi.cbse.collision.PlayerCollisionSystem;
 import dk.sdu.mmmi.cbse.playersystem.PlayerPlugin;
 import dk.sdu.mmmi.cbse.playersystem.PlayerControlSystem;
 import dk.sdu.mmmi.cbse.projectile.EnemyProjectile;
@@ -72,12 +75,12 @@ public class Game implements ApplicationListener {
         postEntityProcessors.add(enemyCollision);
         
         // Asteroid plugin & processor
-//        IGamePluginService asteroidPlugin = new AsteroidPlugin();
-//        IEntityProcessingService asteroidProcess = new AsteroidControlSystem();
-//        IPostEntityProcessingService asteroidCollision = new AsteroidCollisionSystem();
-//        entityPlugins.add(asteroidPlugin);
-//        entityProcessors.add(asteroidProcess);
-//        postEntityProcessors.add(asteroidCollision);
+        IGamePluginService asteroidPlugin = new AsteroidPlugin();
+        IEntityProcessingService asteroidProcess = new AsteroidControlSystem();
+        IPostEntityProcessingService asteroidCollision = new AsteroidCollisionSystem();
+        entityPlugins.add(asteroidPlugin);
+        entityProcessors.add(asteroidProcess);
+        postEntityProcessors.add(asteroidCollision);
         
         //Projectile plugin & processor
         IGamePluginService projectilePlugin = new ProjectilePlugin();
